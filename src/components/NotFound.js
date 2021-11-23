@@ -15,6 +15,7 @@ const NotFound = () => {
     )
 }
 const Main = styled.div`
+height:51vh;
 text-align: center;
 padding: 150px 40px;
 
