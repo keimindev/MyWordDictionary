@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react'
-import {Link} from 'react-router-dom';
+import React, {useEffect, useRef, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {Add, Delete, Edit} from '@material-ui/icons'
@@ -9,6 +9,7 @@ const Words = () => {
     const mywordslist = useSelector((state) => state.reducer.list)
     const lists = mywordslist.sort((a, b) => b.index - a.index)
     const dispatch = useDispatch();
+    const nav = useNavigate();
     const {cur} = useRef(null);
 
     useEffect(() => {
@@ -22,6 +23,12 @@ const Words = () => {
         window.location.href = '/';
              
     }
+
+    const editword = (e) =>{
+        const tar = e.target.parentNode.parentNode.parentNode.parentNode.id;
+        nav(`/${tar}`);
+    }
+
 
     return (
         <Wrapper>
@@ -46,7 +53,7 @@ const Words = () => {
                         <li style={{color:"#005cb2"}}>{x.ex}</li>
                     </div>
                     <div className="btns">
-                    <Button id={x.id}><Edit /></Button>
+                    <Button id={x.id} onClick={editword}><Edit /></Button>
                     <Button id={x.id} onClick={onClick}><Delete /></Button>
                     </div>
                 </Word>
@@ -58,11 +65,15 @@ const Words = () => {
 }
 
 const Wrapper = styled.div`
-background-color: #00bcd4;
-
 .btns{
     display: flex;
     justify-content: end;
+
+    position:absolute;
+    /* bottom: 10px; */
+    right: 10px;
+    top: 20px;
+    
 }
 `;
 
@@ -87,15 +98,18 @@ bottom: 5%;
 width:  60px;
 height: 60px;
 border-radius: 50%;
-background-color: #005c6b;
+background-color: #7c7dfa;
+z-index: 50;
+transition: all 0.5s ease;
 
 .icon{
     font-size: 60px;
-    transition: all 0.5s ease;
+   
 }
 
 &:hover{
-        background-color: #005662;
+        background-color: #002994;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     }
 `;
 const Contents = styled.div`
@@ -103,7 +117,7 @@ width: 100%;
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 grid-gap: 20px;
-background-color: #00bcd4;
+
 
 @media screen and (max-width: 1200px) {
     width: 100%;
@@ -121,8 +135,10 @@ background-color: #00bcd4;
 
 const Word = styled.div`
 background-color: ${(props) => props.cur ? '#222' : '#fff' };
-padding: 5px 20px;
+padding: 5px 20px 20px 20px;
 border-radius: 10px;
+
+position: relative;
 
 div{
     margin: 15px 0 20px 0;
@@ -138,11 +154,12 @@ background-color: transparent;
 margin: 0 5px;
 border: 0;
 outline: 0;
-color:#08bcd4;
+color:#7c7dfa;
 cursor: pointer;
+transition: all 0.5s ease;
  
 &:hover{
-color: #005662;
+color: #002994;
 }
 `;
 
