@@ -19,6 +19,13 @@ height:51vh;
 text-align: center;
 padding: 150px 40px;
 color: #fff;
+background-color: #4451c6;
+
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 60;
 
 img{
     display: block;
@@ -42,6 +49,7 @@ background-color: #7c7dfa;
 color: #fff;
 transition: all 0.5s ease-in;
 cursor: pointer;
+
 
 &:hover{
     background-color: #002994;

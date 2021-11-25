@@ -14,16 +14,15 @@ const Words = () => {
 
     useEffect(() => {
        dispatch(loadWordsListFB())
-    }, [])
+    })
 
     const onClick = (e) =>{
-        const target = e.target.parentNode.parentNode.parentNode.parentNode.id;
+        const target = e.target.parentNode.parentNode.id;
         dispatch(delWordsListFB(target))
-        dispatch(loadWordsListFB())
     }
 
     const editword = (e) =>{
-        const tar = e.target.parentNode.parentNode.parentNode.parentNode.id;
+        const tar = e.target.parentNode.parentNode.id;
         nav(`/${tar}/edit`);
     }
 
@@ -90,8 +89,9 @@ const Title = styled.h2`
 color: #fff;
 text-align: center;
 margin-bottom: 60px;
-font-size: 30px;
-font-weight: 600;
+font-size: 36px;
+font-weight:bold;
+font-family: 'yg-jalnan';
 `;
 
 const Btn =styled.button`

@@ -118,7 +118,7 @@ export const editWordsListFB =(word) =>{
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
      case LOAD_LIST : {
-         return { list: action.words_list}
+         return { list: action.words_list, is_loaded: true}
      }
      case LOAD :{
          return { list: action.words_list}
