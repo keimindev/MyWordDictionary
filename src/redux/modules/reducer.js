@@ -86,7 +86,6 @@ export const addWordsListFB =( words ) =>{
 export const delWordsListFB =( word_id ) =>{
     return async function(dispatch, getState){
         const docRef = doc(db, "words_list", word_id)
-
         await deleteDoc(docRef);
         const _words_list = getState().reducer.list;
         const _words_id = _words_list.find((b) =>{

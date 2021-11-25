@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Words />}/>
         <Route path="/add" element={<AddWord />}/>
-        <Route path="/:id" element={<AddWord />}/>
+        <Route path="/:id/edit" element={<AddWord />}/>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </div>

@@ -18,10 +18,15 @@ const Main = styled.div`
 height:51vh;
 text-align: center;
 padding: 150px 40px;
+color: #fff;
 
 img{
     display: block;
     margin: 30px auto;
+}
+
+h2{
+    margin-bottom: 20px;
 }
 `;
 const Btn = styled.button`
@@ -33,13 +38,13 @@ border: 0;
 outline: 0;
 font-weight: 600;
 border-radius: 10px;
-background-color: #007c91;
+background-color: #7c7dfa;
 color: #fff;
 transition: all 0.5s ease-in;
 cursor: pointer;
 
 &:hover{
-    background-color:#005c6b;
+    background-color: #002994;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 `;
