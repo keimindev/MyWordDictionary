@@ -2,18 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Spinner = () => {
-    const is_loaded = true;
     return (
         <>
-        {is_loaded ? (
             <Loading>
                 <p>Loading...</p>
             </Loading>
-        ) : (
-           <p>hello</p>
-        )}
         </>
-
     )
 }
 
