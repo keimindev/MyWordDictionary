@@ -88,7 +88,8 @@ export const delWordsListFB =( word_id ) =>{
         const docRef = doc(db, "words_list", word_id)
         await deleteDoc(docRef);
         const _words_list = getState().reducer.list;
-        const _words_id = _words_list.findIndex((b) =>{
+        const _words_id = _words_list.find((b) =>{
+
             return b.id === word_id;
         })
    
@@ -103,7 +104,8 @@ export const editWordsListFB =(word) =>{
         await updateDoc(docRef, {word: word.word, meaning: word.meaning, ex: word.ex, index: word.index});
         const _words_list = getState().reducer.list;
         const _words_id = _words_list.find((b) =>{
-            return b.id === word;
+            console.log(word.id, b.id)
+            return b.id === word.id;
         })
    
         dispatch(editWordsList(_words_id))

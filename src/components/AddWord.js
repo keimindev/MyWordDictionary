@@ -36,7 +36,7 @@ const AddWord = () => {
 
 
     const addMyword=() =>{
-        if(myWord.current.value == '' && myMean.current.value == '' && myEx.current.value == ''){
+        if(myWord.current.value === '' && myMean.current.value === '' && myEx.current.value === ''){
             return null
         }else{
             dispatch(addWordsListFB({

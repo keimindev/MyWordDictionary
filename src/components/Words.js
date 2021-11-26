@@ -14,18 +14,7 @@ const Words = () => {
 
     useEffect(() => {
        dispatch(loadWordsListFB())
-    })
-
-    const onClick = (e) =>{
-        const target = e.target.parentNode.parentNode.id;
-        dispatch(delWordsListFB(target))
-    }
-
-    const editword = (e) =>{
-        const tar = e.target.parentNode.parentNode.id;
-        nav(`/${tar}/edit`);
-    }
-
+    },[])
 
     return (
         <Wrapper>
@@ -34,7 +23,7 @@ const Words = () => {
             <Btn><Add className="icon"/></Btn>
             </Link>
             <Contents>
-            { mywordslist.length == 0 ? (
+            { mywordslist.length === 0 ? (
                <Empty>
                    <h2>Empty your list</h2>
                    <h3>Please, Add your new word</h3>
@@ -58,8 +47,11 @@ const Words = () => {
                             <li style={{color:"#005cb2"}}>{x.ex}</li>
                         </div>
                         <div className="btns">
-                        <Button id={x.id} onClick={editword}><Edit /></Button>
-                        <Button id={x.id} onClick={onClick}><Delete /></Button>
+                        <Button onClick={() => nav(`/${x.id}/edit`)}><Edit /></Button>
+                        <Button onClick={() => {
+                                dispatch(delWordsListFB(x.id))
+                                dispatch(loadWordsListFB())
+                        }}><Delete /></Button>
                         </div>
                     </Word>
                     )

@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Words />}/>
         <Route path="/add" element={<AddWord />}/>
         <Route path="/:id/edit" element={<AddWord />}/>
-        <Route path="/*" element={<NotFound/>}/>
+        <Route element={<NotFound/>}/>
       </Routes>
       {!is_loaded && <Spinner/>}
     </div>
