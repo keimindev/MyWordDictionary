@@ -5,16 +5,14 @@ import styled from 'styled-components';
 import {Add, Delete, Edit} from '@material-ui/icons'
 import { delWordsListFB, loadWordsListFB } from '../redux/modules/reducer';
 
+
 const Words = () => {
     const mywordslist = useSelector((state) => state.reducer.list)
     mywordslist.sort((a, b) => b.index - a.index)
     const dispatch = useDispatch();
     const nav = useNavigate();
     const {cur} = useRef(null);
-
-    useEffect(() => {
-       dispatch(loadWordsListFB())
-    },[])
+    dispatch(loadWordsListFB())
 
     return (
         <Wrapper>

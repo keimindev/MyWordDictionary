@@ -20,11 +20,6 @@ const ADD_WORDS = 'reducer/ADD_WORDS';
 const DEL_WORDS = 'reducer/DEL_WORDS';
 const EDIT_WORDS = 'reducer/EDIT_WORDS';
 
-const LOAD = 'reducer/LOAD';
-const ADD = 'reducer/ADD';
-const DELETE = 'reducer/DELETE';
-const EDIT = 'reducer/EDIT';
-
 
 //action creator
 export const loadWordsList = (words_list) =>{
@@ -43,23 +38,6 @@ export const editWordsList = (word_id) => {
     return { type: EDIT_WORDS, word_id}
 }
 
-
-//redux-action creator
-export const loadWords = (words_list) =>{
-    return {type: LOAD, words_list}
-}
-
-export const addWords = (words_list) =>{
-    return {type: ADD, words_list}
-}
-
-export const delWords = (word_id) => {
-    return {type: DELETE, word_id}
-}
-
-export const editWords = (word) => {
-    return { type: EDIT, word}
-}
 
 
 //middlewares
@@ -88,7 +66,7 @@ export const delWordsListFB =( word_id ) =>{
         const docRef = doc(db, "words_list", word_id)
         await deleteDoc(docRef);
         const _words_list = getState().reducer.list;
-        const _words_id = _words_list.find((b) =>{
+        const _words_id = _words_list.findIndex((b) =>{
 
             return b.id === word_id;
         })
@@ -103,8 +81,7 @@ export const editWordsListFB =(word) =>{
         const docRef = doc(db, "words_list", word.id)
         await updateDoc(docRef, {word: word.word, meaning: word.meaning, ex: word.ex, index: word.index});
         const _words_list = getState().reducer.list;
-        const _words_id = _words_list.find((b) =>{
-            console.log(word.id, b.id)
+        const _words_id = _words_list.findIndex((b) =>{
             return b.id === word.id;
         })
    
@@ -120,25 +97,23 @@ export const editWordsListFB =(word) =>{
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
      case LOAD_LIST : {
-         return { list: action.words_list, is_loaded: true}
+         return {list: action.words_list, is_loaded: true}
      }
-     case LOAD :{
-         return { list: action.words_list}
-     }
-     case ADD :{
+
+     case ADD_WORDS :{
          const new_words_list = [...state.list, action.words_list];
-         return { ...state, list: new_words_list}
+         return { list: new_words_list}
      }
-     case DELETE :{
+     case DEL_WORDS :{
          return{
          ...state, 
          list: state.list.filter((x, i) => x.id !== action.word_id)
      }}
      
-     case EDIT: {
+     case EDIT_WORDS : {
          const update_new_word = state.list.map((el, idx) => {
-             if(action.word.id === el.id){
-                 return action.word
+             if(action.word_id === el){
+                 return action.word_id
              }else{
                  return el;
              }

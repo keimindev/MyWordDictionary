@@ -46,7 +46,6 @@ const AddWord = () => {
                 ex: myEx.current.value, 
             }))
         }
-
         nav('/');
     }
 
@@ -58,13 +57,13 @@ const AddWord = () => {
             meaning: newMean.current.value,
             ex: newEx.current.value,   
         }))
-       
-        nav('/');
+        nav('/')
+
     }
 
     return (
         <>
-        { !id ? (
+        { !id ?  (
             <Main>
             <Title>단어 추가하기</Title>
             <Contents>
